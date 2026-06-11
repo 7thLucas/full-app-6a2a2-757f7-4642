@@ -11,7 +11,7 @@ Contacts and interaction logs are the foundation, but the **pipeline view is the
 ## Core capabilities (MVP direction)
 - **Contacts** — add and manage the people/accounts being worked.
 - **Interaction log** — record calls, emails, and meetings against each contact.
-- **Pipeline view** — see deals by stage, with emphasis on surfacing at-risk / cold-going deals so the user can act in time.
+- **Pipeline view** — see deals across three stages (**Lead → Active → Past**), with emphasis on surfacing at-risk / cold-going deals so the user can act in time.
 
 ## Primary user
 **Solo operator** — one person running their own pipeline, contacts, and follow-ups single-handed. No teams, no permissions, no handoffs. Every surface optimizes for a single owner glancing in and instantly knowing who to chase today.
