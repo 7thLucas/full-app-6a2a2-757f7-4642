@@ -22,8 +22,10 @@ Contacts and interaction logs are the foundation, but the **pipeline view is the
 - Built for one: no collaboration overhead — speed and clarity for a single owner.
 - Keep it simple: fast capture, clear stages, low friction.
 
+## Confirmed during onboarding
+- **Primary user** — solo operator running their own sales process single-handed.
+- **Day-one "one thing it must nail"** — pipeline view that flags deals going cold, opening straight to a "chase these now" list fed by contacts and interaction logs.
+
 ## To confirm during onboarding
-- **User / business context** — _TBD_ (whose sales process, what's being sold).
-- **Day-one "one thing it must nail"** — _TBD_ (leading candidate: pipeline view that flags deals going cold).
-- **Product name** — _TBD_.
+- **Product name** — _TBD_ (leading candidate: "Pipeline").
 - **Brand / tone** — _TBD_.
