@@ -1,6 +1,6 @@
 # Product Overview
 
-> Status: Scoped and ready to build (first-run). Core direction, primary user, day-one focus, name, and brand are confirmed.
+> Status: MVP built and live (first-run complete). Core direction, primary user, day-one focus, name, and brand are confirmed and reflected in the shipped app.
 
 ## What it is
 **SimpleCRM** — a lightweight CRM for tracking contacts, logging interactions, and seeing the sales pipeline at a glance. The name sets the promise: it stays fast and uncluttered for a one-person pipeline.
