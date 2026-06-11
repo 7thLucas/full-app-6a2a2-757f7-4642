@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Plus, Search, Users } from "lucide-react";
+import { ChevronDown, Plus, Search, Users } from "lucide-react";
 import { AppShell } from "~/components/crm/app-shell";
 import { ContactCard } from "~/components/crm/contact-card";
 import { Modal } from "~/components/crm/modal";
 import { ContactForm } from "~/components/crm/contact-form";
-import { TextInput } from "~/components/crm/field";
+import { Select, TextInput } from "~/components/crm/field";
 import { useStages } from "~/components/crm/use-stages";
 import { crmClient, type Contact, type ContactInput } from "~/lib/crm.client";
 import { cn } from "~/lib/utils";
@@ -14,11 +14,12 @@ export function meta() {
 }
 
 export default function ContactsPage() {
-  const { labelOf } = useStages();
+  const { stages, labelOf } = useStages();
   const [contacts, setContacts] = useState<Contact[]>([]);
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<"all" | "cold">("all");
+  const [stageFilter, setStageFilter] = useState<string>("all");
   const [adding, setAdding] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
@@ -47,6 +48,7 @@ export default function ContactsPage() {
     return contacts.filter((c) => {
       if (filter === "cold" && c.temperature !== "cold" && c.temperature !== "warming")
         return false;
+      if (stageFilter !== "all" && c.stage !== stageFilter) return false;
       if (!q) return true;
       return (
         c.name.toLowerCase().includes(q) ||
@@ -54,7 +56,7 @@ export default function ContactsPage() {
         c.email.toLowerCase().includes(q)
       );
     });
-  }, [contacts, query, filter]);
+  }, [contacts, query, filter, stageFilter]);
 
   const coldCount = contacts.filter(
     (c) => c.temperature === "cold" || c.temperature === "warming",
@@ -86,6 +88,22 @@ export default function ContactsPage() {
             placeholder="Search name, company, email"
             className="pl-10"
           />
+        </div>
+        <div className="relative shrink-0">
+          <Select
+            aria-label="Filter by stage"
+            value={stageFilter}
+            onChange={(e) => setStageFilter(e.target.value)}
+            className="sm:w-44"
+          >
+            <option value="all">All stages</option>
+            {stages.map((s) => (
+              <option key={s.key} value={s.key}>
+                {s.label}
+              </option>
+            ))}
+          </Select>
+          <ChevronDown className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#94A3B8]" />
         </div>
         <div className="flex shrink-0 gap-1 rounded-xl bg-[#F1F5F9] p-1">
           <FilterPill active={filter === "all"} onClick={() => setFilter("all")}>
