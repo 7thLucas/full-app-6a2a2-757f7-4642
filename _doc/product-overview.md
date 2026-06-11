@@ -1,9 +1,9 @@
 # Product Overview
 
-> Status: Early scoping (first-run). Core direction is set; specifics marked _TBD_ are confirmed during onboarding before the build.
+> Status: Scoped and ready to build (first-run). Core direction, primary user, day-one focus, name, and brand are confirmed.
 
 ## What it is
-A simple CRM for tracking contacts, logging interactions, and seeing the sales pipeline at a glance.
+**SimpleCRM** — a lightweight CRM for tracking contacts, logging interactions, and seeing the sales pipeline at a glance. The name sets the promise: it stays fast and uncluttered for a one-person pipeline.
 
 ## The real job it does
 Contacts and interaction logs are the foundation, but the **pipeline view is the moneymaker**: it surfaces *who is about to go cold* so the user follows up before a warm lead slips. The product's core value is preventing revenue leakage from missed or late follow-ups — not merely storing records.
