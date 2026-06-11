@@ -44,10 +44,8 @@ export const defaultConfigurablesData: TDefaultConfigurableData = {
   emptyFollowUpMessage: "You're all caught up. No deals are going cold today.",
   pipelineStages: [
     { key: "lead", label: "Lead" },
-    { key: "contacted", label: "Contacted" },
-    { key: "proposal", label: "Proposal" },
-    { key: "negotiation", label: "Negotiation" },
-    { key: "won", label: "Won" },
+    { key: "active", label: "Active" },
+    { key: "past", label: "Past" },
   ],
   coldThresholdDays: 7,
   warmingThresholdDays: 4,

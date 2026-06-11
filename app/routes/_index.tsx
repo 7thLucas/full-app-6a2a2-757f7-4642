@@ -51,7 +51,7 @@ export default function PipelinePage() {
   const openValue = useMemo(
     () =>
       contacts
-        .filter((c) => c.stage !== "won")
+        .filter((c) => c.stage !== "past")
         .reduce((sum, c) => sum + (c.value || 0), 0),
     [contacts],
   );
@@ -106,7 +106,7 @@ export default function PipelinePage() {
             <StatCard
               icon={<CheckCircle2 className="h-4 w-4 text-[#16A34A]" />}
               label="Active deals"
-              value={String(contacts.filter((c) => c.stage !== "won").length)}
+              value={String(contacts.filter((c) => c.stage !== "past").length)}
             />
           </div>
 

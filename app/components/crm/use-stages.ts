@@ -8,10 +8,8 @@ export interface Stage {
 
 const FALLBACK_STAGES: Stage[] = [
   { key: "lead", label: "Lead" },
-  { key: "contacted", label: "Contacted" },
-  { key: "proposal", label: "Proposal" },
-  { key: "negotiation", label: "Negotiation" },
-  { key: "won", label: "Won" },
+  { key: "active", label: "Active" },
+  { key: "past", label: "Past" },
 ];
 
 /** Pipeline stages from configurables, with a labels lookup map. */

@@ -3,6 +3,7 @@ import { ContactModel } from "./models/contact.model";
 import { InteractionModel, type InteractionKind } from "./models/interaction.model";
 import { ConfigurableModel } from "~/modules/configurables/src/models/configurables.model";
 import { defaultConfigurablesData } from "~/modules/configurables/src/constants/configurables.default";
+import { CLOSED_STAGE, DEFAULT_STAGE, normalizeStage } from "./stages";
 
 const DAY_MS = 1000 * 60 * 60 * 24;
 
@@ -49,8 +50,8 @@ export interface InteractionDto {
   createdAt: string;
 }
 
-/** "Won" deals are closed and never need chasing — exclude from cold detection. */
-const CLOSED_STAGES = new Set(["won", "lost", "closed"]);
+/** "Past" deals are closed and never need chasing — exclude from cold detection. */
+const CLOSED_STAGES = new Set([CLOSED_STAGE]);
 
 async function getThresholds(): Promise<{ cold: number; warming: number }> {
   try {
@@ -82,7 +83,7 @@ function classify(
   stage: string,
   thresholds: { cold: number; warming: number },
 ): DealTemperature {
-  if (CLOSED_STAGES.has(stage)) return "fresh";
+  if (CLOSED_STAGES.has(normalizeStage(stage))) return "fresh";
   if (daysSinceContact >= thresholds.cold) return "cold";
   if (daysSinceContact >= thresholds.warming) return "warming";
   return "fresh";
@@ -95,18 +96,19 @@ function toContactDto(
 ): ContactDto {
   const lastContactedAt: Date = doc.lastContactedAt ?? doc.createdAt ?? now;
   const daysSinceContact = Math.max(0, daysBetween(new Date(lastContactedAt), now));
+  const stage = normalizeStage(doc.stage);
   return {
     id: String(doc._id),
     name: doc.name,
     company: doc.company ?? "",
     email: doc.email ?? "",
     phone: doc.phone ?? "",
-    stage: doc.stage ?? "lead",
+    stage,
     value: doc.value ?? 0,
     notes: doc.notes ?? "",
     lastContactedAt: new Date(lastContactedAt).toISOString(),
     daysSinceContact,
-    temperature: classify(daysSinceContact, doc.stage ?? "lead", thresholds),
+    temperature: classify(daysSinceContact, stage, thresholds),
     createdAt: new Date(doc.createdAt ?? now).toISOString(),
     updatedAt: new Date(doc.updatedAt ?? now).toISOString(),
   };
@@ -167,7 +169,7 @@ export class CrmService {
       company: input.company?.trim() ?? "",
       email: input.email?.trim() ?? "",
       phone: input.phone?.trim() ?? "",
-      stage: input.stage ?? "lead",
+      stage: input.stage ? normalizeStage(input.stage) : DEFAULT_STAGE,
       value: Number(input.value) || 0,
       notes: input.notes?.trim() ?? "",
       lastContactedAt: now,
@@ -184,7 +186,7 @@ export class CrmService {
     if (input.company !== undefined) update.company = input.company.trim();
     if (input.email !== undefined) update.email = input.email.trim();
     if (input.phone !== undefined) update.phone = input.phone.trim();
-    if (input.stage !== undefined) update.stage = input.stage;
+    if (input.stage !== undefined) update.stage = normalizeStage(input.stage);
     if (input.value !== undefined) update.value = Number(input.value) || 0;
     if (input.notes !== undefined) update.notes = input.notes.trim();
 

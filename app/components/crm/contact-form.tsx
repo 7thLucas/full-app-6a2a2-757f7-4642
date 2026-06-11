@@ -12,10 +12,8 @@ interface ContactFormProps {
 
 const FALLBACK_STAGES = [
   { key: "lead", label: "Lead" },
-  { key: "contacted", label: "Contacted" },
-  { key: "proposal", label: "Proposal" },
-  { key: "negotiation", label: "Negotiation" },
-  { key: "won", label: "Won" },
+  { key: "active", label: "Active" },
+  { key: "past", label: "Past" },
 ];
 
 export function ContactForm({ initial, submitting, onSubmit, onCancel }: ContactFormProps) {
