@@ -7,6 +7,7 @@ import { connectMongoDB } from "./app/lib/db.server";
 import { createServer } from "node:http";
 import apiRoutes from "./app/api";
 import { runSeeds } from "~/api/seeds";
+import { seedCrm } from "~/api/crm/crm.seed";
 import mongoose from "mongoose";
 import fs from "node:fs";
 
@@ -29,6 +30,8 @@ async function startServer() {
 
     // Run all seeds
     await runSeeds();
+    // Seed CRM demo pipeline (idempotent)
+    await seedCrm();
 
   } catch (error) {
     console.error("Failed to connect to MongoDB:", error);

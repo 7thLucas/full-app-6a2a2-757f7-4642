@@ -12,35 +12,43 @@ export type TBrandColor = {
   accent: string;
 };
 
+export type TPipelineStage = {
+  key: string;
+  label: string;
+};
+
 export type TDefaultConfigurableData = {
   appName: string;
+  tagline: string;
   logoUrl: string;
   brandColor: TBrandColor;
-  // Mirror new schema fields here. Example:
-  //   maxItemsPerPage?: number;
-  //   enableNotifications?: boolean;
-  //   featuredCategories?: string[];
+  followUpHeading: string;
+  followUpSubheading: string;
+  emptyFollowUpMessage: string;
+  pipelineStages: TPipelineStage[];
+  coldThresholdDays: number;
+  warmingThresholdDays: number;
 };
 
 export const defaultConfigurablesData: TDefaultConfigurableData = {
-  appName: "FILL_APP_NAME_HERE",
+  appName: "SimpleCRM",
+  tagline: "Follow up before a lead goes cold.",
   logoUrl: "FILL_LOGO_URL_HERE",
   brandColor: {
-    primary: "FILL_PRIMARY_COLOR_HERE",
-    secondary: "FILL_SECONDARY_COLOR_HERE",
-    accent: "FILL_ACCENT_COLOR_HERE",
+    primary: "#1D4ED8",
+    secondary: "#1E3A8A",
+    accent: "#2563EB",
   },
-  // ─────────────────────────────────────────────────────────────────────
-  // Add new field defaults here. See RULES.md §5 for per-type shape.
-  // Required branding fields → use the FILL_X_HERE placeholder pattern.
-  // Optional/typed defaults → real value with a "// fill it here" comment:
-  //
-  //   maxItemsPerPage: 12,                     // fill it here
-  //   enableNotifications: true,               // fill it here
-  //   featuredCategories: [],                  // fill it here
-  //   defaultLanguage: "en",                   // must match enum options
-  //   launchDate: "2025-01-01T00:00:00.000Z",  // ISO-8601
-  //   heroImage: "",                           // resolved URL after upload
-  //   galleryImages: [],                       // array of resolved URLs
-  // ─────────────────────────────────────────────────────────────────────
+  followUpHeading: "Follow up today",
+  followUpSubheading: "These deals are going cold. Reach out before they slip.",
+  emptyFollowUpMessage: "You're all caught up. No deals are going cold today.",
+  pipelineStages: [
+    { key: "lead", label: "Lead" },
+    { key: "contacted", label: "Contacted" },
+    { key: "proposal", label: "Proposal" },
+    { key: "negotiation", label: "Negotiation" },
+    { key: "won", label: "Won" },
+  ],
+  coldThresholdDays: 7,
+  warmingThresholdDays: 4,
 };
