@@ -1,0 +1,28 @@
+<style>
+  .mode-landscape .sl-cover { flex-direction: row; align-items: stretch; }
+  .mode-portrait .sl-cover { flex-direction: column; }
+  .mode-portrait .sl-visual { min-height: 38%; }
+</style>
+<section class="w-full h-full overflow-auto bg-white">
+  <div class="sl-cover flex w-full h-full">
+    <div class="flex flex-col justify-between p-12 flex-1">
+      <div>
+        <span class="inline-block text-xs font-semibold tracking-widest uppercase text-indigo-600 mb-8">Simple CRM</span>
+        <h1 class="text-5xl font-extrabold leading-tight text-slate-900">
+          Stop deals from<br/>going cold.
+        </h1>
+        <p class="mt-6 text-xl text-slate-600 max-w-md">
+          Track contacts, log every interaction, and see the one thing that matters — who needs a follow-up before you lose them.
+        </p>
+      </div>
+      <div class="mt-10">
+        <data-attribution />
+      </div>
+    </div>
+    <div class="sl-visual flex-1 relative overflow-hidden">
+      <img class="absolute inset-0 w-full h-full object-cover"
+        src="https://api.qb-deck.quantumbyte.ai/common/image-generation?prompt=clean%20modern%20sales%20pipeline%20dashboard%20on%20a%20laptop%2C%20calm%20editorial%20product%20photography%2C%20soft%20daylight%2C%20minimal"
+        alt="Pipeline at a glance" />
+    </div>
+  </div>
+</section>
