@@ -26,6 +26,7 @@ Contacts and interaction logs are the foundation, but the **pipeline view is the
 - **Primary user** — solo operator running their own sales process single-handed.
 - **Day-one "one thing it must nail"** — pipeline view that flags deals going cold, opening straight to a "chase these now" list fed by contacts and interaction logs.
 
-## To confirm during onboarding
-- **Product name** — _TBD_ (leading candidate: "Pipeline").
-- **Brand / tone** — _TBD_.
+## Brand
+- **Name** — SimpleCRM. Reinforces the promise of a fast, uncluttered, single-owner tool.
+- **Logo / visual** — minimal deep-blue pipeline mark; clean and legible at small sizes.
+- **Tone** — confident, focused, low-friction; speaks to one busy operator who wants clarity, not admin.
